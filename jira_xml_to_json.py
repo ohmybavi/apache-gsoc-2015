@@ -19,10 +19,10 @@ def main():
     print "Usage: jira_xml_to_json.py <export.xml>"
     return 0
 
-  with open(sys.argv[1], 'r') as xml, open('asf-gsoc2015.json', 'w') as json_out:
+  ideasDict =  defaultdict(list)
+  with open(sys.argv[1], 'r') as xml, open('asf-gsoc2015.json', 'w') as ideas_json_out:
     tree = etree.parse(xml)
     issues = tree.xpath('//item')
-    ideasDict =  defaultdict(list)
     for issue in issues:
       item = xmltodict.parse(etree.tostring(issue))
       i = item['item']
@@ -37,7 +37,16 @@ def main():
                       i['description']
       )
       ideasDict["ideas"].append(p.__dict__)
-    json_out.write(json.dumps(ideasDict))
+    ideas_json_out.write(json.dumps(ideasDict))
+
+  with open('asf-gsoc2015-labels.json', 'w') as labels_json:
+    labelsDict = defaultdict(list)
+    for idea in ideasDict["ideas"]:
+      for label in idea["labels"]:
+        if label not in labelsDict["labels"]:
+          labelsDict["labels"].append(label)
+    labels_json.write(json.dumps(labelsDict))
+
 
 
 def get_comments(item):
