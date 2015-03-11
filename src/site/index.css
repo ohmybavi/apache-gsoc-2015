@@ -9,6 +9,7 @@ body {
 .tags {
   margin: 0 0 20px 20px;
   padding: 0;
+  display: none;
 }
 
 .tag {
@@ -33,14 +34,36 @@ body {
   text-align: center;
 }
 
-.top-add-all,
-.top-remove-all {
-  margin: 0 20px 0;
+
+.tag-trigger {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
-.top-tags {
-  padding: 0;
-  list-style: none;
+
+.tag-trigger:checked ~ .tags {
+  display: block;
+}
+
+.tag-trigger:checked ~ .tag-filter-add-all {
+  display: inline;
+}
+
+.tag-trigger:checked ~ .tag-filter-remove-all {
+  display: inline;
+}
+
+.tag-filter-show-hide,
+.tag-filter-add-all,
+.tag-filter-remove-all {
+  margin: 0 20px 0;
+  cursor: pointer;
+}
+
+.tag-filter-add-all,
+.tag-filter-remove-all {
+  display: none;
 }
 
 .list {
