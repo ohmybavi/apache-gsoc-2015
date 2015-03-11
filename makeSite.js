@@ -1,10 +1,13 @@
 var Nightmare = require("nightmare")
-var fs = require("fs")
+var fs = require("fs-extra")
 var resources = []
 var http = require("http")
 
 var port = 8080
 var url = "http://localhost:" + port + "/"
+
+fs.existsSync("./dist") && fs.removeSync("./dist")
+fs.mkdirSync("./dist")
 
 new Nightmare()
 .on("resourceReceived", function(response) {
@@ -24,6 +27,8 @@ new Nightmare()
       fs.writeFileSync("./dist/" + r.replace(url, ""), data) 
     }) 
   })
+
+  console.log("Done")
 })
 
 function download(url, cb) {
