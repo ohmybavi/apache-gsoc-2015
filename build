@@ -2,8 +2,15 @@
 
 build_target='./dist'
 
-echo 'todo: automate it'
-echo 'currently: `npm run build`, then start a server in src/site, then run `npm make-site` from this directory; the output will be in ./dist'
+#echo 'todo: automate it'
+#echo 'currently: `npm run build`, then start a server in src/site, then run `npm make-site` from this directory; the output will be in ./dist'
 
 # webpack
 # node build.js
+
+
+
+npm run build
+cd 'src/site'
+python -m SimpleHTTPServer 8080
+cd -
