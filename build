@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+build_target='./dist'
+
+echo 'todo: automate it'
+echo 'currently: run webpack, then start a server in src/site, then run node build.js from this directory; the output will be in ./dist'
+
+# webpack
+# node build.js
