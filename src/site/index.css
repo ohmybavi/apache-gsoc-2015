@@ -6,16 +6,26 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
-.tag {
-  display: inline;
+.tags {
+  margin-bottom:20px;
 }
 
-.tag:after {
-  content: "     ";
+.tag {
+  display: inline-block;
+  width: 25%;
+  position: relative;
+  line-height: 1.4em;
+}
+
+.tag-add, 
+.tag-remove {
+  cursor: pointer;
 }
 
 .tag-remove {
   color: red;
+  position: absolute;
+  left: -15px;
 }
 
 .top-header {

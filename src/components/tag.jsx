@@ -12,13 +12,13 @@ export default React.createClass({
     const {label, active} = this.props
     return (
       <li className="tag" > 
+        <label className="tag-remove" 
+          onClick={this.clickHandler(removeLabel, label)}>
+          {active? "× " : "  "}
+        </label>
         <label className="tag-add"
           onClick={this.clickHandler(addLabel, label)}>
           {label}
-        </label>
-        <label className="tag-remove" 
-          onClick={this.clickHandler(removeLabel, label)}>
-          {active? " ×" : ""}
         </label>
       </li>
     )
