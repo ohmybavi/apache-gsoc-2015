@@ -34,6 +34,10 @@ body {
   text-align: center;
 }
 
+.top-tag-filter,
+.top-title-filter {
+  display: inline-block;
+}
 
 .tag-trigger {
   display: none;
@@ -42,22 +46,22 @@ body {
 }
 
 
-.tag-trigger:checked ~ .tags {
+.tag-trigger:checked ~ .top-tag-filter .tags {
   display: block;
 }
 
-.tag-trigger:checked ~ .tag-filter-add-all {
-  display: inline;
+.tag-trigger:checked ~ .top-tag-filter .tag-filter-add-all {
+  display: inline-block;
 }
 
-.tag-trigger:checked ~ .tag-filter-remove-all {
-  display: inline;
+.tag-trigger:checked ~ .top-tag-filter .tag-filter-remove-all {
+  display: inline-block;
 }
 
 .tag-filter-show-hide,
 .tag-filter-add-all,
 .tag-filter-remove-all {
-  margin: 0 20px 0;
+  margin: 20px 20px 0;
   cursor: pointer;
 }
 

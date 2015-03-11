@@ -9,13 +9,6 @@ export default React.createClass({
   render: function() {
     return (
       <div className={this.props.className}>
-        <input 
-          className="tag-trigger" 
-          id="tag-trigger" 
-          type="checkbox" />
-        <label className="tag-filter-show-hide"
-          htmlFor="tag-trigger">
-        Show / hide tags</label>
         <label className="tag-filter-add-all"
           onClick={this.clickHandler(addLabel)}>
           Add all

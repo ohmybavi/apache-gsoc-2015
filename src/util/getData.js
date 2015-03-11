@@ -4,12 +4,14 @@ import React from "react"
 var effect
 var data
 var labels 
+var project = ""
 
 const applyLabels = _ => 
   data.filter(x =>
     x.labels.filter(y =>
       labels[y] == true   
-    ).length
+    ).length &&
+    x.project.toLowerCase().indexOf(project.toLowerCase()) > -1
 )
 
 export default {
@@ -25,7 +27,7 @@ export default {
               data = JSON.parse(_data).ideas
               labels = JSON.parse(_labels).labels.reduce(
                 (o, k) => Object.defineProperty(o, k, {
-                  value: false, enumerable: true, writable: true}), {})
+                  value: true, enumerable: true, writable: true}), {})
               effect = _effect 
               effect(applyLabels(data), labels)
             })
@@ -42,7 +44,11 @@ export default {
     labels[x] = false
     effect(applyLabels(data), labels)
   },
+  filterByProject: p => {
+    project = p
+    effect(applyLabels(data), labels) 
+  },
   update: f => {
-    effect(f(data)) 
+    effect(f(applyLabels(data)), labels) 
   }
 }
