@@ -37,15 +37,14 @@ def main():
                       i['description']
       )
       ideasDict["ideas"].append(p.__dict__)
-    ideas_json_out.write(json.dumps(ideasDict))
+#    ideas_json_out.write(json.dumps(ideasDict))
 
   with open('asf-gsoc2015-labels.json', 'w') as labels_json:
-    labelsDict = defaultdict(list)
+    labelsDict = defaultdict(int)
     for idea in ideasDict["ideas"]:
       for label in idea["labels"]:
-        if label not in labelsDict["labels"]:
-          labelsDict["labels"].append(label)
-    labels_json.write(json.dumps(labelsDict))
+        labelsDict[label] += 1
+    labels_json.write(json.dumps({"labels": labelsDict}))
 
 
 
