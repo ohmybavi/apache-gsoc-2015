@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.tag {
+  display: inline;
+}
+
+.tag:after {
+  content: "     ";
+}
+
+.tag-remove {
+  color: red;
+}
+
+.top-header {
+  text-align: center;
+}
+
+.top-tags {
+  padding: 0;
+  list-style: none;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.list-trigger {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.list-trigger:checked ~ .list-detail {
+  display: block;
+}
+
+.list-label {
+  font-size: 1.4em;
+  line-height: 2em;
+  cursor: pointer;
+}
+
+.list-detail {
+  display: none;
+}
+
+.detail-tags {
+  padding: 0;
+  list-style: none;
+}
+
+.detail-tag {
+  display: inline;
+  cursor: pointer;
+}
