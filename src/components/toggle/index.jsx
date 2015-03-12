@@ -1,4 +1,5 @@
 import React from "react"
+import style from "./index.styl"
 
 export default React.createClass({
   render() {

@@ -1,0 +1,24 @@
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.list-trigger {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.list-trigger:checked ~ .list-detail {
+  display: block;
+}
+
+.list-label {
+  font-size: 1.4em;
+  line-height: 2em;
+  cursor: pointer;
+}
+
+.list-detail {
+  display: none;
+}

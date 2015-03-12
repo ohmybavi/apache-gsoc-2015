@@ -1,5 +1,6 @@
 import React from "react"
-import Tags from "./tags.jsx"
+import Tags from "tags"
+import style from "./index.styl"
 
 export default React.createClass({
   render() {

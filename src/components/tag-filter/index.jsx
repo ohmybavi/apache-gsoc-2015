@@ -1,6 +1,7 @@
 import React from "react"
-import Tags from "./tags.jsx"
-import {addLabel, removeLabel} from "../util/getData.js"
+import Tags from "tags"
+import {addLabel, removeLabel} from "../../util/getData.js"
+import style from "./index.styl"
 
 export default React.createClass({
   clickHandler(cb) {

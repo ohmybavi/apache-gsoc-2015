@@ -1,5 +1,6 @@
 import React from "react"
-import Detail from "./detail.jsx"
+import Detail from "detail"
+import style from "./index.styl"
 
 export default React.createClass({
   render: function() {

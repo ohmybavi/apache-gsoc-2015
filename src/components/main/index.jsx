@@ -1,9 +1,9 @@
 import React from "react"
-import List from "./list.jsx"
-import TagFilter from "./tagFilter.jsx"
-import {filterByProject} from "../util/getData.js"
-import Toggle from "./toggle.jsx"
-
+import List from "list"
+import TagFilter from "tag-filter"
+import {filterByProject} from "../../util/getData.js"
+import Toggle from "toggle"
+import style from "./index.styl"
 
 export default React.createClass({
   clickHandler(cb) {

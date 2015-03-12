@@ -8,6 +8,10 @@ module.exports = {
     path: __dirname + "/src/site/",
     filename: "bundle.js"
   },
+  resolve: {
+    fallback: [__dirname + "/src/components"],
+    extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"]
+  },
   module: {
     loaders: [
       { test: /\.styl$/, 

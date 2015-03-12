@@ -1,5 +1,5 @@
 import React from "react"
-import Tag from "./tag.jsx"
+import Tag from "tag"
 
 export default React.createClass({
   render() {

@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.main--header {
+  text-align: center;
+}
+
+.main--show-tags,
+.main--filter-by-title {
+  position: relative;
+}
+
+.show-tags--toggle {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+
+.show-tags--trigger {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1em;
+  user-select: none;
+}
+
+.show-tags--toggle:checked ~ .show-tags--tags {
+  display: block;
+}
+
+.show-tags--tags {
+  display: none;
+}
+
