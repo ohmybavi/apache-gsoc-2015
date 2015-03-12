@@ -20,6 +20,7 @@
     "babel-core": "^4.7.7",
     "babel-loader": "^4.1.0",
     "css-loader": "^0.9.1",
+    "express": "^4.12.2",
     "extract-text-webpack-plugin": "^0.3.8",
     "fs-extra": "^0.16.5",
     "nightmare": "^1.7.0",
