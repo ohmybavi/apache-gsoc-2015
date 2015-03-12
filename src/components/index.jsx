@@ -2,6 +2,8 @@ import React from "react"
 import List from "./list.jsx"
 import TagFilter from "./tagFilter.jsx"
 import {filterByProject} from "../util/getData.js"
+import Toggle from "./toggle.jsx"
+
 
 export default React.createClass({
   clickHandler(cb) {
@@ -9,20 +11,18 @@ export default React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <h1 className="top-header">Google Summer of Code</h1>
-        <input 
-          className="tag-trigger" 
-          id="tag-trigger" 
-          type="checkbox" />
-        <label className="tag-filter-show-hide"
-          htmlFor="tag-trigger">
-        Show / hide tags</label>
-        <input className="top-title-filter"
+      <div className="main">
+        <h1 className="main--header">Google Summer of Code</h1>
+        <input className="main--filter-by-title"
           placeholder="filter by project"
-          onChange={e => filterByProject(e.target.value)}
-        ></input>
-        <TagFilter className="top-tag-filter" labels={this.props.labels} />
+          onChange={e => filterByProject(e.target.value)}>
+        </input>
+        <Toggle className="main--show-tags" fn="and">
+          <label>Show / hide tags</label>
+          <TagFilter className="show-tags--tags" 
+            activeLabels={this.props.activeLabels}
+            labels={this.props.labels} />
+        </Toggle>
         <List data={this.props.data} />
       </div>
     )

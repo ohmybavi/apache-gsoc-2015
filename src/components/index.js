@@ -4,8 +4,8 @@ import React from "react"
 
 getData.init(
   "http://localhost:8080/data.json",
-  (data, labels) => React.render(
-    <App data={data} labels={labels}/>,
+  (data, labels, activeLabels) => React.render(
+    <App data={data} labels={labels} activeLabels={activeLabels}/>,
     document.querySelector(".container")
   )
 )

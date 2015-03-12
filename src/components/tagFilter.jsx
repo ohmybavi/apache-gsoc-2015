@@ -9,15 +9,13 @@ export default React.createClass({
   render: function() {
     return (
       <div className={this.props.className}>
-        <label className="tag-filter-add-all"
-          onClick={this.clickHandler(addLabel)}>
-          Add all
-        </label>
-        <label className="tag-filter-remove-all"
+        <label className="tags--clear"
           onClick={this.clickHandler(removeLabel)}>
-          Remove all
+          Clear filter 
         </label>
-        <Tags labels={this.props.labels} />
+        <Tags className="tags--tag-list" 
+          activeLabels={this.props.activeLabels}
+          labels={this.props.labels} />
       </div>
     )
   }

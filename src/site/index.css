@@ -4,71 +4,77 @@
 
 body {
   font-family: Helvetica, sans-serif;
+  -webkit-animation: bugfix infinite 1s;
+  @-webkit-keyframes bugfix {
+    from {padding: 0;}
+    to {padding: 0;}
+  }
 }
 
-.tags {
-  margin: 0 0 20px 20px;
-  padding: 0;
+.main--header {
+  text-align: center;
+}
+
+.main--show-tags,
+.main--filter-by-title {
+  position: relative;
+}
+
+.show-tags--toggle {
+  width: 0;
+  height: 0;
   display: none;
 }
 
-.tag {
+
+.show-tags--trigger {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1em;
+}
+
+.show-tags--toggle:checked ~ .show-tags--tags {
+  display: block;
+}
+
+.show-tags--tags {
+  display: none;
+}
+
+
+.tags--clear {
+  cursor: pointer;
+}
+
+.tag-list--tag {
   display: inline-block;
   width: 25%;
   position: relative;
   line-height: 1.4em;
 }
 
-.tag-add, 
-.tag-remove {
+.tag--add, 
+.tag--remove {
   cursor: pointer;
 }
 
-.tag-remove {
+.tag--remove {
   color: red;
   position: absolute;
   left: -15px;
 }
 
-.top-header {
-  text-align: center;
-}
 
-.top-tag-filter,
-.top-title-filter {
-  display: inline-block;
-}
-
-.tag-trigger {
+.tag--trigger {
   display: none;
   width: 0;
   height: 0;
 }
 
 
-.tag-trigger:checked ~ .top-tag-filter .tags {
-  display: block;
-}
-
-.tag-trigger:checked ~ .top-tag-filter .tag-filter-add-all {
-  display: inline-block;
-}
-
-.tag-trigger:checked ~ .top-tag-filter .tag-filter-remove-all {
-  display: inline-block;
-}
-
-.tag-filter-show-hide,
-.tag-filter-add-all,
-.tag-filter-remove-all {
-  margin: 20px 20px 0;
-  cursor: pointer;
-}
-
-.tag-filter-add-all,
-.tag-filter-remove-all {
-  display: none;
-}
 
 .list {
   padding: 0;
