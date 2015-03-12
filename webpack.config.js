@@ -2,10 +2,10 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var autoprefixer = require("autoprefixer")
 
 module.exports = {
-  context: __dirname + "/src/components",
+  context: __dirname + "/src/pages/main",
   entry: "./index.js",
   output: {
-    path: __dirname + "/src/site/",
+    path: __dirname + "/src/pages/main",
     filename: "bundle.js"
   },
   resolve: {

@@ -1,7 +1,7 @@
 var Nightmare = require("nightmare")
 var fs = require("fs-extra")
-var resources = []
 var http = require("http")
+var resources = []
 
 var port = 8080
 var url = "http://localhost:" + port + "/"
@@ -9,27 +9,30 @@ var url = "http://localhost:" + port + "/"
 fs.existsSync("./dist") && fs.removeSync("./dist")
 fs.mkdirSync("./dist")
 
-new Nightmare()
-.on("resourceReceived", function(response) {
-  if (resources.indexOf(response.url) == -1 && response.url != url) {
-    resources.push(response.url)
-  }
-})
-.goto(url)
-.evaluate(function() {
-  return document.documentElement.outerHTML
-}, function(data) {
-  fs.writeFileSync("./dist/index.html", data)
-})
-.run(function(err, n) {
-  resources.forEach(function(r) {
-    download(r, function(data) {
-      fs.writeFileSync("./dist/" + r.replace(url, ""), data) 
-    }) 
-  })
+module.exports = function(cb) {
 
-  console.log("Done")
-})
+  return new Nightmare()
+    .on("resourceReceived", function(response) {
+      if (resources.indexOf(response.url) == -1 && response.url != url) {
+        resources.push(response.url)
+        download(response.url, function(data) {
+          fs.writeFileSync("./dist/" + response.url.replace(url, ""), data)
+          console.log("saved: " + response.url)
+        }) 
+      }
+    })
+    .goto(url)
+    .evaluate(function() {
+      return document.documentElement.outerHTML
+    }, function(data) {
+      fs.writeFileSync("./dist/index.html", data)
+    })
+    .run(function(err, n) {
+      console.log("done")
+      cb()
+    })
+}
+
 
 function download(url, cb) {
 
