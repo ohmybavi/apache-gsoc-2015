@@ -16,7 +16,8 @@ module.exports = function(cb) {
       if (resources.indexOf(response.url) == -1 && response.url != url) {
         resources.push(response.url)
         download(response.url, function(data) {
-          fs.writeFileSync("./dist/" + response.url.replace(url, ""), data)
+          fs.writeFileSync("./dist/" + response.url.replace("http://localhost:9090/", "").replace(url, ""), data)
+          // fs.writeFileSync("./dist/" + response.url.replace(url, ""), data)
           console.log("saved: " + response.url)
         }) 
       }
