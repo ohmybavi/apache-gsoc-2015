@@ -7,7 +7,7 @@ export default React.createClass({
     const labelMap = this.props.labels
     const labels = Object.keys(labelMap)
     return (
-      <ul className={this.props.className}>
+      <ul className={this.props.className} style={this.props.style}>
         {labels
           .sort((x, y) => labelMap[x] < labelMap[y])
           .map(x => 
