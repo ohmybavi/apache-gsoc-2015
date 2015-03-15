@@ -1,24 +1,34 @@
-.list {
-  padding: 0;
-  list-style: none;
-}
 
-.list-trigger {
+.list--project
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12)
+  margin: 10px 0
+
+.list--project--title
+  text-align: center
+
+.list--project--proposals
+  margin: 0
+  padding: 0
+  list-style: none
+
+
+.list--trigger {
   display: none;
   width: 0;
   height: 0;
 }
 
-.list-trigger:checked ~ .list-detail {
+.list--trigger:checked ~ .list--detail {
   display: block;
 }
 
-.list-label {
+.list--label {
   font-size: 1.4em;
   line-height: 2em;
   cursor: pointer;
 }
 
-.list-detail {
+.list--detail {
   display: none;
+  padding: 0 30px
 }

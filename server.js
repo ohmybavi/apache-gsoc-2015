@@ -68,6 +68,10 @@ const builder = webpack({
       { test: /\.jsx$/, 
         exclude: /node_modules/, 
         loaders: ["react-hot", "babel-loader"]},
+      { test: /\.woff(2)?([\?]?.*)?$/, 
+        loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)([\?]?.*)?$/, 
+        loader: "file-loader" }
     ]
   },
   postcss: {
@@ -101,6 +105,7 @@ app.get("/", (req, res) => {
 
 
 app.use(express.static("data"))
+  .use(express.static("src/pages/fonts"))
   .use(middleware)
 
 const server = app.listen(8080, function () {
