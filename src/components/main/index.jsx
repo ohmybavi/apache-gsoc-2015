@@ -19,7 +19,7 @@ export default React.createClass({
   render: function() {
     const {proposals, projects, labels, activeLabels} = this.props    
     const isModified = proposals.length < this.state.proposals.length 
-    console.log(this.state.tagsVisible)
+    console.log(proposals.length)    
     return (
       <div className="main">
         <h1 className="main--header">Apache Software Foundation Proposals</h1>

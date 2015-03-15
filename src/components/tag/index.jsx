@@ -11,17 +11,17 @@ export default React.createClass({
   },
   render() {
     const {label, active, value} = this.props
+    const cb = active? removeLabel : addLabel
+    const activeClass = active? " is-active" : ""
     return (
-      <li className={this.props.className}>
-        <label className="tag--remove"
-          onClick={this.clickHandler(removeLabel, label)}>
-          {active? "× " : "  "}
-        </label>
-        <label className="tag--add"
-          onClick={this.clickHandler(addLabel, label)}>
-          {label} ({value})
+      <li className={this.props.className + activeClass}>
+        <label className={"tag--card" + activeClass}
+          onClick={this.clickHandler(cb, label)}>
+          {label} <span className="tag--card--value">{value}</span>
         </label>
       </li>
     )
   }
 })
+
+

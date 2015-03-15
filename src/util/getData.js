@@ -53,10 +53,6 @@ export default {
             res2.on("data", chunk => {_labels += chunk.toString()})
             res2.on("end", _ => {
               proposals = JSON.parse(_data).ideas
-
-
-
-
               labels = JSON.parse(_labels).labels
               effect = _effect 
               effect(applyLabels(proposals), labels, activeLabels)

@@ -5,7 +5,6 @@ import style from "./index.styl"
 export default React.createClass({
   render: function() {
     // const ideas = this.props.data
-    console.log(this.props.data)
     return (
       <ul className="list">{this.props.data.map(x => 
         <li>
