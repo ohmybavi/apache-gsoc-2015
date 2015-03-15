@@ -8,6 +8,16 @@ export default React.createClass({
       proposals: x.proposals.map(y => ({isOpen: false}))
     }))}
   },
+  getClassName(data, j, i) {
+    var isOpen
+    try {
+      isOpen = this.state.data[j].proposals[i].isOpen
+    }
+    catch (e) {
+      isOpen = false
+    }
+    return isOpen? "icon-down-open-mini" : "icon-right-open-mini"
+  },
   render: function() {
     return (
       <ul className={this.props.className}>{this.props.data.map((x, j) => 
@@ -15,9 +25,7 @@ export default React.createClass({
             <h2 className="list--project--title">{x.project}</h2>
             <ul className="list--project--proposals">
               {x.proposals.map((x, i) => 
-              <li className={
-                this.state.data[j].proposals[i].isOpen?
-                 "icon-down-open-mini" : "icon-right-open-mini"}>
+              <li className={this.getClassName(this.state.data, j, i)}>
                   <input 
                     onChange={_ => {
                       var _data = this.state.data.slice(0)

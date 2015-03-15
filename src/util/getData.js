@@ -32,8 +32,7 @@ const getProjects = data => data.map(function(x) {
 
 const applyLabels = data => {
   const proposals = data.filter(x =>
-    x.labels.filter(y => has(getActiveLabels(), y)).length > 0 &&
-    has.apply(null, [x.project, projectFilter].map(normalize))
+    x.labels.filter(y => has(getActiveLabels(), y)).length > 0
   )
   
   return {
