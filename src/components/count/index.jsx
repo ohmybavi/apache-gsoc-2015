@@ -3,10 +3,14 @@ import style from "./index.styl"
 
 export default React.createClass({
   render: function() {
+    const {data, children} = this.props
     return (
       <div className={this.props.className}>
-        <label className="count--title">{this.props.children}</label>
-        <label className="count--value">{this.props.data}</label>
+        <span className="count--value">{data}</span>
+        <span> </span>
+        <span className="count--title">
+          {data == 1? children : children + "s"}
+        </span>
       </div>
     )
   }

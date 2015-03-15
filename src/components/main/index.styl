@@ -21,7 +21,6 @@ body {
 
 .main--show-tags
   position: relative
-  // right: 0
 
 .show-tags--toggle {
   width: 0;
@@ -32,9 +31,13 @@ body {
 .show-tags--trigger {
   cursor: pointer;
   position: absolute;
-  top: -25px;
+  top: -20px;
   right: 0;
   user-select: none;
+}
+
+.main--reset-tags {
+  cursor: pointer;
 }
 
 .show-tags--toggle:checked ~ .show-tags--tags {
