@@ -22,8 +22,10 @@ export default React.createClass({
     console.log(proposals.length)    
     return (
       <div className="main">
-        <h1 className="main--header">Apache Software Foundation Proposals</h1>
-        <h2 className="main--header">Google Summer of Code</h2>
+        <div className="main--cover">
+          <h1 className="main--header">Apache Software Foundation Proposals</h1>
+          <h2 className="main--header">Google Summer of Code</h2>
+        </div>
         <div className="main--toolbar">
           <Count className="main--count" data={proposals.length}>
             Proposal

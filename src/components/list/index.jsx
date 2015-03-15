@@ -32,7 +32,7 @@ export default React.createClass({
                   <label 
                     className="list--label"
                     htmlFor={"trigger-" + x.project + i}>
-                  {x.summary} (<a href={x.link}>link</a>)
+                  {x.summary} (<a className="list--link" href={x.link}>link</a>)
                   </label>
                   <Detail className="list--detail" {...x} />
                 </li>
