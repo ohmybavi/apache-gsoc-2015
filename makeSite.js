@@ -13,7 +13,9 @@ module.exports = function(cb) {
 
   return new Nightmare()
     .on("resourceReceived", function(response) {
-      if (resources.indexOf(response.url) == -1 && response.url != url) {
+      if (resources.indexOf(response.url) == -1 && 
+          response.url != url &&
+          response.url.indexOf(url) > -1) {
         resources.push(response.url)
         download(response.url, function(data) {
           fs.writeFileSync("./dist/" + response.url.replace("http://localhost:9090/", "").replace(url, ""), data)
