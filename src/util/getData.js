@@ -2,9 +2,10 @@ import http from "http"
 import React from "react"
 
 var effect
-var data
+var proposals = []
+var projects = []
 var activeLabels = []
-var labels 
+var labels = []
 var projectFilter = ""
 
 const has = (xs, x) => xs.indexOf(x) > -1
@@ -12,11 +13,34 @@ const normalize = x => x.toLowerCase()
 const getActiveLabels = _ => 
   activeLabels.length == 0? Object.keys(labels) : activeLabels
 
-const applyLabels = data => 
-  data.filter(x =>
+const getProjects = data => data.map(function(x) {
+  return {
+    project: x.project, 
+    proposals: [x]
+  }
+}).reduce(function(a, b) {
+  const _a = a[a.length - 1]
+  
+  if (_a && _a.project == b.project) {
+    _a.proposals.push(b.proposals[0]) 
+    return a
+  }
+
+  return a.concat(b)
+}, [])
+
+
+const applyLabels = data => {
+  const proposals = data.filter(x =>
     x.labels.filter(y => has(getActiveLabels(), y)).length > 0 &&
     has.apply(null, [x.project, projectFilter].map(normalize))
-)
+  )
+  
+  return {
+    proposals: proposals,
+    projects: getProjects(proposals)
+  }
+}
 
 export default {
   init: (query, _effect) => {
@@ -28,10 +52,14 @@ export default {
           http.get("http://localhost:8080/labels.json", res2 => {
             res2.on("data", chunk => {_labels += chunk.toString()})
             res2.on("end", _ => {
-              data = JSON.parse(_data).ideas
+              proposals = JSON.parse(_data).ideas
+
+
+
+
               labels = JSON.parse(_labels).labels
               effect = _effect 
-              effect(applyLabels(data), labels, activeLabels)
+              effect(applyLabels(proposals), labels, activeLabels)
             })
           }).on("error", e => console.log(e))
 
@@ -40,17 +68,17 @@ export default {
   },
   addLabel: x => {
     activeLabels.push(x)
-    effect(applyLabels(data), labels, activeLabels)
+    effect(applyLabels(proposals), labels, activeLabels)
   },
   removeLabel: x => {
     activeLabels = activeLabels.filter(y => y != x)
-    effect(applyLabels(data), labels, activeLabels)
+    effect(applyLabels(proposals), labels, activeLabels)
   },
   filterByProject: p => {
     projectFilter = p
-    effect(applyLabels(data), labels, activeLabels) 
+    effect(applyLabels(proposals), labels, activeLabels) 
   },
   update: f => {
-    effect(f(applyLabels(data)), labels, activeLabels) 
+    effect(f(applyLabels(proposals)), labels, activeLabels) 
   }
 }

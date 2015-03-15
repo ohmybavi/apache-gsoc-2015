@@ -4,21 +4,29 @@ import style from "./index.styl"
 
 export default React.createClass({
   render: function() {
-    const ideas = this.props.data
+    // const ideas = this.props.data
+    console.log(this.props.data)
     return (
-      <ul className="list">{ideas.map((x, i) => 
+      <ul className="list">{this.props.data.map(x => 
         <li>
           <div>
-            <input 
-              className="list-trigger" 
-              id={"trigger-" + i} 
-              type="checkbox" />
-            <label 
-              className="list-label"
-              htmlFor={"trigger-" + i}>
-              {x.project}: {x.summary}
-            </label>
-            <Detail className="list-detail" {...x} />
+            {x.project}
+            <ul>
+            {x.proposals.map((x, i) =>
+              <li>
+                <input 
+                  className="list-trigger" 
+                  id={"trigger-" + x.project + i} 
+                  type="checkbox" />
+                <label 
+                  className="list-label"
+                  htmlFor={"trigger-" + x.project + i}>
+                {x.summary}
+                </label>
+                <Detail className="list-detail" {...x} />
+              </li>
+            )}
+            </ul>
           </div>
         </li>)}
       </ul>

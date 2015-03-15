@@ -26,7 +26,7 @@ export default React.createClass({
     return (
       <Tag {...container}>
         <input {...input}/>
-        <label {...label}></label>
+        <label {...label}>{this.props.label}</label>
         {children}
       </Tag>
     )

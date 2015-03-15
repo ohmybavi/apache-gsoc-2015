@@ -6,14 +6,22 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+.main 
+  position: relative
+  max-width: 960px
+  margin: 0 auto
+
 .main--header {
   text-align: center;
 }
 
-.main--show-tags,
-.main--filter-by-title {
-  position: relative;
-}
+.main--count
+  display: inline-block
+  line-height: 2em
+
+.main--show-tags
+  position: relative
+  // right: 0
 
 .show-tags--toggle {
   width: 0;
@@ -21,20 +29,18 @@ body {
   display: none;
 }
 
-
 .show-tags--trigger {
   cursor: pointer;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -25px;
   right: 0;
-  height: 1em;
   user-select: none;
 }
 
 .show-tags--toggle:checked ~ .show-tags--tags {
   display: block;
 }
+
 
 .show-tags--tags {
   display: none;

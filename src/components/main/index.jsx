@@ -1,8 +1,8 @@
 import React from "react"
 import List from "list"
 import TagFilter from "tag-filter"
-import {filterByProject} from "../../util/getData.js"
 import Toggle from "toggle"
+import Count from "count"
 import style from "./index.styl"
 
 export default React.createClass({
@@ -10,20 +10,24 @@ export default React.createClass({
     return _ => Object.keys(this.props.labels).forEach(cb)
   },
   render: function() {
+    const {proposals, projects, labels, activeLabels} = this.props    
+
     return (
       <div className="main">
-        <h1 className="main--header">Google Summer of Code</h1>
-        <input className="main--filter-by-title"
-          placeholder="filter by project"
-          onChange={e => filterByProject(e.target.value)}>
-        </input>
-        <Toggle className="main--show-tags" fn="and">
-          <label>Show / hide tags</label>
+        <h1 className="main--header">Apache Software Foundation Proposals</h1>
+        <h2 className="main--header">Google Summer of Code</h2>
+        <Count className="main--count" data={projects.length}>
+          Projects
+        </Count>
+        <Count className="main--count" data={proposals.length}>
+          Proposals
+        </Count>
+        <Toggle className="main--show-tags" fn="and" label="Labels v">
           <TagFilter className="show-tags--tags" 
-            activeLabels={this.props.activeLabels}
-            labels={this.props.labels} />
+            activeLabels={activeLabels}
+            labels={labels} />
         </Toggle>
-        <List data={this.props.data} />
+        <List className="main--list" data={projects} />
       </div>
     )
   }
