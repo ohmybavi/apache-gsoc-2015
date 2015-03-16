@@ -1,23 +1,9 @@
 import React from "react"
 import Detail from "detail"
+import {toggleProposal} from "../../util/getData.js"
 import style from "./index.styl"
 
 export default React.createClass({
-  getInitialState() {
-    return {data: this.props.data.map(x => ({
-      proposals: x.proposals.map(y => ({isOpen: false}))
-    }))}
-  },
-  getClassName(data, j, i) {
-    var isOpen
-    try {
-      isOpen = this.state.data[j].proposals[i].isOpen
-    }
-    catch (e) {
-      isOpen = false
-    }
-    return isOpen? "icon-down-open-mini" : "icon-right-open-mini"
-  },
   render: function() {
     return (
       <ul className={this.props.className}>{this.props.data.map((x, j) => 
@@ -25,26 +11,21 @@ export default React.createClass({
             <h2 className="list--project--title">{x.project}</h2>
             <ul className="list--project--proposals">
               {x.proposals.map((x, i) => 
-              <li className={this.getClassName(this.state.data, j, i)}>
-                  <input 
-                    onChange={_ => {
-                      var _data = this.state.data.slice(0)
-                      var lens = _data[j].proposals[i]
-                      lens.isOpen = !lens.isOpen
-                      this.setState({
-                        data: _data 
-                      })}}
-                    className="list--trigger" 
-                    id={"trigger-" + x.project + i} 
-                    type="checkbox" />
-                  <label 
-                    className="list--label"
-                    htmlFor={"trigger-" + x.project + i}>
-                  {x.summary} (<a className="list--link" href={x.link}>link</a>)
-                  </label>
-                  <Detail className="list--detail" {...x} />
-                </li>
-              
+              <li className={
+                x.isOpen? "icon-down-open-mini" : "icon-right-open-mini"
+              }>
+                <input 
+                  onChange={_ => {toggleProposal(j, i, !x.isOpen)}}
+                  className="list--trigger" 
+                  id={"trigger-" + x.project + i} 
+                  type="checkbox" />
+                <label 
+                  className="list--label"
+                  htmlFor={"trigger-" + x.project + i}>
+                {x.summary} (<a className="list--link" href={x.link}>link</a>)
+                </label>
+                <Detail className="list--detail" {...x} />
+              </li>
               )}
             </ul>
         </li>)}

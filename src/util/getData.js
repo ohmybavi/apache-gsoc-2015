@@ -1,6 +1,7 @@
 import http from "http"
 import React from "react"
 
+
 var effect
 var proposals = []
 var projects = []
@@ -16,17 +17,22 @@ const getActiveLabels = _ =>
 const getProjects = data => data.map(function(x) {
   return {
     project: x.project, 
-    proposals: [x]
+    proposals: [
+      Object.defineProperty(x, "isOpen", {
+        value: false, enumerable: true, writable: true
+      })
+    ]
   }
 }).reduce(function(a, b) {
-  const _a = a[a.length - 1]
-  
-  if (_a && _a.project == b.project) {
-    _a.proposals.push(b.proposals[0]) 
-    return a
+  const a_ = a[0] || {}
+
+  if (a_.project == b.project) {
+    a_.proposals.push(b.proposals[0]) 
+  } else {
+    a.unshift(b) 
   }
 
-  return a.concat(b)
+  return a
 }, [])
 
 
@@ -68,6 +74,12 @@ export default {
   removeLabel: x => {
     activeLabels = activeLabels.filter(y => y != x)
     effect(applyLabels(proposals), labels, activeLabels)
+  },
+  toggleProposal: (i, j, v) => {
+    var data = applyLabels(proposals)
+    var lens = data.projects[i].proposals[j]
+    lens.isOpen = v
+    effect(data, labels, activeLabels)
   },
   filterByProject: p => {
     projectFilter = p
