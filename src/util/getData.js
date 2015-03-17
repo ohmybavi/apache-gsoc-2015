@@ -1,20 +1,8 @@
-import React from "react"
-
 var state = {}
 var initialState = {}
-
 var effect
-var proposals = []
-var projects = []
-var activeLabels = []
-var labels = []
-var projectFilter = ""
 
 const has = (xs, x) => xs.indexOf(x) > -1
-const normalize = x => x.toLowerCase()
-const getActiveLabels = _ => 
-  activeLabels.length == 0? Object.keys(labels) : activeLabels
-
 const getProjects = data => data.map(function(x) {
   return {
     project: x.project, 
@@ -52,8 +40,8 @@ export default {
   init: (_effect) => {
     var r1 = new XMLHttpRequest()
     var r2 = new XMLHttpRequest()
-    r1.open("GET", "http://localhost:8080/data.json", true) 
-    r2.open("GET", "http://localhost:8080/labels.json", true) 
+    r1.open("GET", "data.json", true) 
+    r2.open("GET", "labels.json", true) 
     r1.send()
     r1.onreadystatechange = e1 => { 
       if (r1.readyState != 4 || r1.status != 200) return
