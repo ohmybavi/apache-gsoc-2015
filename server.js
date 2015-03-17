@@ -23,6 +23,7 @@ const entry = prod? "./index.js" : [
   "webpack/hot/only-dev-server",
   "./index.js"
 ]
+const devtool = prod? null : "eval"
 const publicPath = prod? "/" : devUrl
 const plugins = prod? 
   [
@@ -46,7 +47,7 @@ const stylus = prod?
 
 
 const builder = webpack({
-  devtool: "eval",
+  devtool: devtool,
   context: __dirname + "/src/pages/main",
   entry: entry,
   output: {
@@ -77,9 +78,12 @@ const builder = webpack({
   postcss: {
       defaults: [autoprefixer]
   },
-  plugins: plugins
+  plugins: plugins,
+  externals: {React: "React"}
 
 })
+
+
 const middleware = prod? webpackMiddleware(builder, {}) : _ => _
 
 if (dev) {
