@@ -111,8 +111,7 @@ app.get("/", (req, res) => {
 })
 
 
-app.use(express.static("data"))
-  .use(express.static("src/pages/fonts"))
+app.use(express.static("src/fonts"))
   .use(middleware)
 
 const server = app.listen(8080, function () {

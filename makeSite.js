@@ -1,6 +1,7 @@
 var Nightmare = require("nightmare")
 var fs = require("fs-extra")
 var http = require("http")
+var hash = require("./hash.js")
 var resources = []
 
 var port = 8080
@@ -15,16 +16,23 @@ module.exports = function(cb) {
     .on("resourceReceived", function(response) {
       if (resources.indexOf(response.url) == -1 && 
           response.url != url &&
+          response.url != url + hash &&
           response.url.indexOf(url) > -1) {
+        
         resources.push(response.url)
+        
         download(response.url, function(data) {
-          fs.writeFileSync("./dist/" + response.url.replace("http://localhost:9090/", "").replace(url, ""), data)
-          // fs.writeFileSync("./dist/" + response.url.replace(url, ""), data)
+          fs.writeFileSync(
+            "./dist/" + response.url
+              .replace("http://localhost:9090/", "")
+              .replace(url, ""), 
+            data
+          )
           console.log("saved: " + response.url)
         }) 
       }
     })
-    .goto(url)
+    .goto(url + hash)
     .evaluate(function() {
       return document.documentElement.outerHTML
     }, function(data) {
