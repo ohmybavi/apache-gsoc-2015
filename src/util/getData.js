@@ -1,5 +1,6 @@
 import {ideas as proposals} from "../../data/data.json"
 import {labels} from "../../data/labels.json"
+import labelKeys from "../../data/labelsSorted.json"
 
 var state = {}
 var effect
@@ -39,7 +40,8 @@ export default {
 
     const projects = getProjects(proposals) 
     const activeLabels = []
-    state = {proposals, projects, labels, activeLabels}
+    
+    state = {proposals, projects, labels, activeLabels, labelKeys}
 
     effect = _effect 
     effect(state)

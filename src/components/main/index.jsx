@@ -13,6 +13,7 @@ export default React.createClass({
   },
   render: function() {
     const {proposals, projects, labels, activeLabels} = this.props    
+    const labelKeys = this.props.labelKeys
     const isModified = activeLabels.length > 0 
     return (
       <div className="main">
@@ -42,10 +43,13 @@ export default React.createClass({
         </div>
         <Tags className="main--tag-list" 
           activeLabels={activeLabels}
+          labelKeys={labelKeys}
           labels={labels} />
         <List className="main--list" data={projects} />
       </div>
     )
   }
 })
+
+
 
