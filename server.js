@@ -60,6 +60,9 @@ const builder = webpack({
   },
   module: {
     loaders: [
+      { test: /\.json$/, 
+        exclude: /node_modules/, 
+        loader: "json"},
       { test: /\.styl$/, 
         exclude: /node_modules/, 
         loader: stylus},

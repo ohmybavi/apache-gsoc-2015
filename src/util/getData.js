@@ -1,3 +1,5 @@
+import _proposals from "../../data/data.json"
+import _labels from "../../data/labels.json"
 var state = {}
 var initialState = {}
 var effect
@@ -38,33 +40,20 @@ const applyLabels = state => {
 
 export default {
   init: (_effect) => {
-    var r1 = new XMLHttpRequest()
-    var r2 = new XMLHttpRequest()
-    r1.open("GET", "data.json", true) 
-    r2.open("GET", "labels.json", true) 
-    r1.send()
-    r1.onreadystatechange = e1 => { 
-      if (r1.readyState != 4 || r1.status != 200) return
 
-      r2.send()
-      r2.onreadystatechange = e2 => { 
-        if (r2.readyState != 4 || r2.status != 200) return
+    const proposals = _proposals.ideas
+    const projects = getProjects(proposals) 
+    const labels = _labels.labels
+    const activeLabels = []
 
-        const proposals = JSON.parse(e1.target.response).ideas
-        const projects = getProjects(proposals) 
-        const labels = JSON.parse(e2.target.response).labels
-        const activeLabels = []
+    state = {proposals, projects, labels, activeLabels}
 
-        state = {proposals, projects, labels, activeLabels}
-
-        initialState = Object.freeze({
-          proposals, projects, labels, activeLabels
-        })
-
-        effect = _effect 
-        effect(state)
-      } 
-    } 
+    initialState = Object.freeze({
+      proposals, projects, labels, activeLabels
+    })
+    
+    effect = _effect 
+    effect(state)
   },
   addLabel: x => {
     state.activeLabels.push(x)
