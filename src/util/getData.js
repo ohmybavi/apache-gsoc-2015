@@ -1,6 +1,7 @@
-import http from "http"
 import React from "react"
 
+var state = {}
+var initialState = {}
 
 var effect
 var proposals = []
@@ -36,56 +37,53 @@ const getProjects = data => data.map(function(x) {
 }, [])
 
 
-const applyLabels = data => {
-  const proposals = data.filter(x =>
-    x.labels.filter(y => has(getActiveLabels(), y)).length > 0
-  )
+const applyLabels = state => {
+  const proposals = state.activeLabels.length > 0? 
+    initialState.proposals.filter(x =>
+      x.labels.filter(y => has(state.activeLabels, y)).length > 0
+    ) : initialState.proposals.slice(0)
+  state.proposals = proposals
+  state.projects = getProjects(proposals)
   
-  return {
-    proposals: proposals,
-    projects: getProjects(proposals)
-  }
+  return state
 }
 
 export default {
-  init: (query, _effect) => {
-    http.get(query, res1 => {
-        var _data = ""
-        var _labels = ""
-        res1.on("data", chunk => {_data += chunk.toString()})
-        res1.on("end", _ => {
-          http.get("http://localhost:8080/labels.json", res2 => {
-            res2.on("data", chunk => {_labels += chunk.toString()})
-            res2.on("end", _ => {
-              proposals = JSON.parse(_data).ideas
-              labels = JSON.parse(_labels).labels
-              effect = _effect 
-              effect(applyLabels(proposals), labels, activeLabels)
-            })
-          }).on("error", e => console.log(e))
+  init: (_effect) => {
+    var r1 = new XMLHttpRequest()
+    var r2 = new XMLHttpRequest()
+    r1.open("GET", "http://localhost:8080/data.json", true) 
+    r2.open("GET", "http://localhost:8080/labels.json", true) 
+    r1.send()
+    r1.onreadystatechange = e1 => { 
+      if (r1.readyState != 4 || r1.status != 200) return
 
+      r2.send()
+      r2.onreadystatechange = e2 => { 
+        if (r2.readyState != 4 || r2.status != 200) return
+
+        const proposals = JSON.parse(e1.target.response).ideas
+        const projects = getProjects(proposals) 
+        const labels = JSON.parse(e2.target.response).labels
+        const activeLabels = []
+
+        state = {proposals, projects, labels, activeLabels}
+
+        initialState = Object.freeze({
+          proposals, projects, labels, activeLabels
         })
-    }).on("error", e => console.log(e))
+
+        effect = _effect 
+        effect(state)
+      } 
+    } 
   },
   addLabel: x => {
-    activeLabels.push(x)
-    effect(applyLabels(proposals), labels, activeLabels)
+    state.activeLabels.push(x)
+    effect(applyLabels(state))
   },
   removeLabel: x => {
-    activeLabels = activeLabels.filter(y => y != x)
-    effect(applyLabels(proposals), labels, activeLabels)
-  },
-  toggleProposal: (i, j, v) => {
-    var data = applyLabels(proposals)
-    var lens = data.projects[i].proposals[j]
-    lens.isOpen = v
-    effect(data, labels, activeLabels)
-  },
-  filterByProject: p => {
-    projectFilter = p
-    effect(applyLabels(proposals), labels, activeLabels) 
-  },
-  update: f => {
-    effect(f(applyLabels(proposals)), labels, activeLabels) 
+    state.activeLabels = state.activeLabels.filter(y => y != x)
+    effect(applyLabels(state))
   }
 }

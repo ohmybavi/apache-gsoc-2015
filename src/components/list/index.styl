@@ -18,9 +18,30 @@
   height: 0;
 }
 
-.list--trigger:checked ~ .list--detail {
-  display: block;
-}
+.list--trigger:checked ~ .list--detail 
+  display: block
+
+.list--label:before
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  content: "\e801" 
+
+.list--trigger:checked ~ .list--label:before
+  content: "\e802" 
+
+.list--project--proposal
+  list-style: none
 
 .list--label {
   font-size: 1.4em;

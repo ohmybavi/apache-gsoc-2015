@@ -3,25 +3,20 @@ import List from "list"
 import TagFilter from "tag-filter"
 import Toggle from "toggle"
 import Count from "count"
-import {removeLabel} from "../../util/getData.js"
+import {toggle, removeLabel} from "../../util/getData.js"
 import Tags from "tags"
 import style from "./index.styl"
 
 export default React.createClass({
   clickHandler(cb) {
-    return _ => Object.keys(this.props.labels).forEach(cb)
-  },
-  componentWillMount() {
-    this.setState({
-      proposals: this.props.proposals
-    })
+    return _ => this.props.activeLabels.forEach(cb)
   },
   render: function() {
     const {proposals, projects, labels, activeLabels} = this.props    
-    const isModified = proposals.length < this.state.proposals.length 
-    console.log(proposals.length)    
+    const isModified = activeLabels.length > 0 
     return (
       <div className="main">
+        <input id="tags--toggle" className="main--toggle-tags" type="checkbox"/>
         <div className="main--cover">
           <h1 className="main--header">Apache Software Foundation Proposals</h1>
           <h2 className="main--header">Google Summer of Code</h2>
@@ -41,15 +36,11 @@ export default React.createClass({
             style={{display: isModified? "inline-block" : "none"}}>
             (Show all)
           </label>
-          <label 
-            className="main--show-tags"
-            onClick={e => 
-              this.setState({tagsVisible: !this.state.tagsVisible})}>
-            {this.state.tagsVisible? "Hide " : "Show "} labels
+          <label className="main--show-tags" htmlFor="tags--toggle">
+            labels
           </label>
         </div>
-        <Tags className="tags--tag-list" 
-          style={{display: this.state.tagsVisible? "block" : "none"}}
+        <Tags className="main--tag-list" 
           activeLabels={activeLabels}
           labels={labels} />
         <List className="main--list" data={projects} />
@@ -58,16 +49,3 @@ export default React.createClass({
   }
 })
 
-          // <Toggle 
-          //   className="main--show-tags" 
-          //   onClick={e => {
-          //     console.log(e.target)
-          //     this.setState({tagsVisible: !this.state.tagsVisible})
-          //   }}
-          //   fn="and" 
-          //   label="Labels v">
-          // </Toggle>
-
-            // <TagFilter className="show-tags--tags" 
-            //   activeLabels={activeLabels}
-            //   labels={labels} />

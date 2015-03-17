@@ -60,6 +60,29 @@ body {
   height: 2.3em
 }
 
+.main--toggle-tags
+  width: 0
+  height: 0
+  display: none
+
+
+.main--tag-list
+  margin: 0
+  padding: 0
+  background-color: #fafafa  
+  display: none
+
+
+.main--toggle-tags:checked ~ .main--tag-list
+  display: block
+
+
+.main--show-tags:before
+  content: "Show "
+  
+.main--toggle-tags:checked ~ .main--toolbar .main--show-tags:before
+  content: "Hide "
+  
 .main--list 
   padding: 0
   list-style: none
