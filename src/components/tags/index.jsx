@@ -14,6 +14,7 @@ export default React.createClass({
           .sort((x, y) => labelMap[x] > labelMap[y]? -1 : 1)
           .map(x => 
             <Tag className="tag-list--tag" 
+              key={x} 
               label={x} 
               value={labelMap[x]} 
               active={activeLabels.indexOf(x) > -1}/>)}

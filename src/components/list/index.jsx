@@ -12,11 +12,11 @@ export default React.createClass({
 
     return (
       <ul className={this.props.className}>{this.props.data.map((x, j) => 
-        <li className="list--project">
+        <li key={x + j} className="list--project">
           <h2 className="list--project--title">{x.project}</h2>
           <ul className="list--project--proposals">
             {x.proposals.map((x, i, xs) => 
-              <li className="list--project--proposal">
+              <li key={x + i} className="list--project--proposal">
                 <input className="list--trigger" 
                   id={"trigger-" + x.project + i} 
                   defaultChecked={false}
