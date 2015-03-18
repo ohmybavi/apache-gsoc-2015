@@ -34,7 +34,7 @@ module.exports = function(cb) {
     })
     .goto(url + hash)
     .evaluate(function() {
-      return document.documentElement.outerHTML
+      return "<!DOCTYPE html>\n" + document.documentElement.outerHTML
     }, function(data) {
       fs.writeFileSync("./dist/index.html", data)
     })
