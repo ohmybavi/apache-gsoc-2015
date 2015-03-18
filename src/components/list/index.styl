@@ -1,10 +1,12 @@
-
 .list--project
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12)
   margin: 10px 0
 
 .list--project--title
   text-align: center
+  font-size: 1.2em
+  +above(700px)
+    font-size: 1.5em
 
 .list--project--proposals
   margin: 0
@@ -43,12 +45,14 @@
 .list--project--proposal
   list-style: none
 
-.list--label {
-  font-size: 1.4em;
-  line-height: 2em;
-  cursor: pointer;
+.list--label 
+  line-height: 2em
+  cursor: pointer
   user-select: none
-}
+  font-size: 1em
+  +above(700px)
+    font-size: 1.4em
+  
 
 .list--detail {
   display: none;

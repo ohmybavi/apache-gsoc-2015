@@ -6,6 +6,7 @@ import webpack from "webpack"
 import fs from "fs-extra"
 import autoprefixer from "autoprefixer"
 import ExtractTextPlugin from "extract-text-webpack-plugin"
+import rupture from "rupture"
 
 const dev = process.argv[2] == "--dev"
 const prod = !dev
@@ -78,8 +79,11 @@ const builder = webpack({
         loader: "file-loader" }
     ]
   },
+  stylus: {
+    use: [rupture()]
+  },
   postcss: {
-      defaults: [autoprefixer]
+    defaults: [autoprefixer]
   },
   plugins: plugins,
   externals: {React: "React"}
