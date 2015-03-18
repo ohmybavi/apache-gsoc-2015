@@ -1,11 +1,12 @@
-.tag--card {
-  cursor: pointer;
+.tag--card 
+  cursor: pointer
   display: inline-block
   line-height: 1.5em
-}
+  margin-right: 12px
 
 .tag--card.is-active:after
-  content: " ×"
+  position: absolute
+  content: "\00a0\00d7"
   font-weight: bold
 
 .tag--card--value
