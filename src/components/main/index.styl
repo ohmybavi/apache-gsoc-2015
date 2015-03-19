@@ -1,13 +1,18 @@
 @import "../../fonts/css/fontello.css"
 
-* {
-  box-sizing: border-box;
-}
+cover-bg = #fafafa
 
-body {
-  font-family: "Roboto", Helvetica, sans-serif;
+* 
+  box-sizing: border-box
+
+body 
+  font-family: "Roboto", Helvetica, sans-serif
   margin: 0
-}
+  color: #424242
+
+a
+  text-decoration: none
+  color: #e51c23
 
 .main 
   position: relative
@@ -16,7 +21,7 @@ body {
 
 .main--cover
   user-select: none
-  background-color: #3f51b5
+  background-color: cover-bg
   font-size: 80%
   padding: 48px 0 32px 
   +above(700px)
@@ -37,28 +42,27 @@ h2.main--header
   +above(700px)
     font-size: 2.25em
 
-.main--header {
-  text-align: center;
+.main--header 
+  text-align: center
   margin: 0
   font-weight: 400
-  color: #fafafa
-}
+  color: #e51c23
 
 .main--toolbar
   user-select: none
-  background-color: #303f9f
+  background-color: #424242
   position: relative
-  color: #fff
+  color: cover-bg
   font-size: 1em
   padding: 12px
   +above(700px)
-    padding: 24px
-    font-size: 1.5em
+    padding: 16px
+    font-size: 1em
 
 .main--count
   display: inline-block
   line-height: 2em
-
+  
 
 .show-tags--toggle {
   width: 0;
@@ -70,14 +74,14 @@ h2.main--header
   float: right
   cursor: pointer;
   user-select: none;
-  border-bottom: 1px dashed #fff
+  border-bottom: 1px dashed cover-bg
   line-height: 2em
   height: 2em
 }
 
 .main--reset-tags {
   cursor: pointer;
-  border-bottom: 1px dashed #fff
+  border-bottom: 1px dashed cover-bg
   height: 1.6em
 }
 
@@ -89,8 +93,8 @@ h2.main--header
 
 .main--tag-list
   margin: 0
-  padding: 0
-  background-color: #fafafa  
+  padding: 8px
+  background-color: cover-bg  
   display: none
 
 .main--toggle-tags:checked ~ .main--tag-list
@@ -107,4 +111,23 @@ h2.main--header
   padding: 0
   list-style: none
 
+.main--footer
+  user-select: none
+  background-color: #424242
+  height: 48px
+  font-size: 1em
+  line-height: 48px
+  color: cover-bg
+  padding:0 32px
+  position: relative
 
+
+.footer--source
+  position: absolute
+  left: 20px
+  span:after
+    content: "\00a0"
+
+.footer--byline
+  position: absolute
+  right: 20px    

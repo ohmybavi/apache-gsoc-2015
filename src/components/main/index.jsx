@@ -46,6 +46,15 @@ export default React.createClass({
           labelKeys={labelKeys}
           labels={labels} />
         <List className="main--list" data={projects} />
+        <div className="main--footer">
+          <span className="footer--source">
+            Source: 
+            <a href="https://project-new.apache.org">
+              https://project-new.apache.org
+            </a>
+          </span>
+          <span className="footer--byline">Made in Seoul</span>
+        </div>
       </div>
     )
   }
