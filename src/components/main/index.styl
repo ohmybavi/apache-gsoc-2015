@@ -18,25 +18,42 @@ body {
   user-select: none
   background-color: #3f51b5
   font-size: 80%
+  padding: 48px 0 32px 
   +above(700px)
+    padding: 96px 0 64px 
     font-size: 100%
+
+h1.main--header
+  font-size: 2em
+  line-height: 1.2em
+  margin-bottom: 1em
+  +above(700px)
+    margin-bottom: 0 
+    line-height: 1.6em
+    font-size: 3em
+  
+h2.main--header
+  font-size: 1.5em
+  +above(700px)
+    font-size: 2.25em
 
 .main--header {
   text-align: center;
   margin: 0
-  line-height: 3em
   font-weight: 400
   color: #fafafa
 }
 
 .main--toolbar
   user-select: none
-  height: 3em
-  line-height: 3em
   background-color: #303f9f
-  padding: 0 10px
   position: relative
   color: #fff
+  font-size: 1em
+  padding: 12px
+  +above(700px)
+    padding: 24px
+    font-size: 1.5em
 
 .main--count
   display: inline-block
@@ -54,13 +71,14 @@ body {
   cursor: pointer;
   user-select: none;
   border-bottom: 1px dashed #fff
-  height: 2.3em
+  line-height: 2em
+  height: 2em
 }
 
 .main--reset-tags {
   cursor: pointer;
   border-bottom: 1px dashed #fff
-  height: 2.3em
+  height: 1.6em
 }
 
 .main--toggle-tags

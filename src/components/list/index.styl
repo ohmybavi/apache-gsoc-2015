@@ -1,13 +1,16 @@
 .list--project
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12)
   margin: 10px 0
-  padding: 0 10px
+  padding: 12px
+  +above(700px)
+    padding: 32px
 
 .list--project--title
   text-align: center
-  font-size: 1.2em
+  margin: 0
+  font-size: 1.5em
   +above(700px)
-    font-size: 1.5em
+    font-size: 2em
 
 .list--project--proposals
   margin: 0
@@ -39,6 +42,7 @@
   line-height: 1em;
   margin-left: .2em;
   content: "\e801" 
+  color: #bdbdbd
 
 .list--trigger:checked ~ .list--label:before
   content: "\e802" 
@@ -47,20 +51,24 @@
   list-style: none
 
 .list--label 
-  line-height: 2em
   cursor: pointer
   user-select: none
+  line-height: 2em
   font-size: 1em
-  +above(700px)
-    font-size: 1.4em
-  
+  +above(700px) 
+    font-size: 1.625em
 
-.list--detail {
-  display: none;
-  padding: 0 30px
-}
+.list--detail 
+  display: none
+  padding: 16px
+  font-size: 1em
+  line-height: 1.5em
+  background-color: #f4f4f4
+  width: 600px
+
 
 .list--link
   text-decoration: none
   color: #e51c23
+
 

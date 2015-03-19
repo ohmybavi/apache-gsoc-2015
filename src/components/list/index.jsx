@@ -23,7 +23,7 @@ export default React.createClass({
                   type="checkbox" />
                 <label className="list--label"
                   htmlFor={"trigger-" + x.project + i}>
-                {x.summary} (<a className="list--link" href={x.link}>link</a>)
+                {x.summary} <a className="list--link icon-link-ext" href={x.link}></a>
                 </label>
                 <Detail className="list--detail" {...x} />
               </li>
