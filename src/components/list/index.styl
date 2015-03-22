@@ -14,9 +14,8 @@
 
 .list--project--proposals
   margin: 0
-  padding: 0
+  padding: 0 0 0 20px 
   list-style: none
-
 
 .list--trigger {
   display: none;
@@ -34,13 +33,16 @@
   speak: none;
   display: inline-block;
   text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
+  // width: 1em;
+  position: absolute
+  left: -20px
+  top: 0
+  // margin-right: .2em;
+  text-align: left;
   font-variant: normal;
   text-transform: none;
-  line-height: 1em;
-  margin-left: .2em;
+  // line-height: 1em;
+  // margin-left: .2em;
   content: "\e801" 
   color: #bdbdbd
 
@@ -49,6 +51,7 @@
 
 .list--project--proposal
   list-style: none
+  position: relative
 
 .list--label 
   cursor: pointer
@@ -64,8 +67,11 @@
   font-size: 1em
   line-height: 1.5em
   // background-color: #f4f4f4
-  width: 700px
   margin: 0 auto
+  text-align: justify
+  width: 90% 
+  +above(700px)
+    width: 700px
 
 
 .list--link
