@@ -1,3 +1,17 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 .list--project
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12)
   margin: 10px 0
@@ -14,7 +28,7 @@
 
 .list--project--proposals
   margin: 0
-  padding: 0 0 0 20px 
+  padding: 0 0 0 20px
   list-style: none
 
 .list--trigger {
@@ -23,7 +37,7 @@
   height: 0;
 }
 
-.list--trigger:checked ~ .list--detail 
+.list--trigger:checked ~ .list--detail
   display: block
 
 .list--label:before
@@ -43,25 +57,25 @@
   text-transform: none;
   // line-height: 1em;
   // margin-left: .2em;
-  content: "\e801" 
+  content: "\e801"
   color: #bdbdbd
 
 .list--trigger:checked ~ .list--label:before
-  content: "\e802" 
+  content: "\e802"
 
 .list--project--proposal
   list-style: none
   position: relative
 
-.list--label 
+.list--label
   cursor: pointer
   user-select: none
   line-height: 2em
   font-size: 1em
-  +above(700px) 
+  +above(700px)
     font-size: 1.625em
 
-.list--detail 
+.list--detail
   display: none
   padding: 0
   font-size: 1em
@@ -69,7 +83,7 @@
   // background-color: #f4f4f4
   margin: 0 auto
   text-align: justify
-  width: 90% 
+  width: 90%
   +above(700px)
     width: 700px
 

@@ -1,3 +1,17 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import express from "express"
 import make from "./makeSite.js"
 import webpackMiddleware from "webpack-dev-middleware"
@@ -19,21 +33,21 @@ console.log((dev? "development" : "production") + " mode")
 
 const app = express()
 
-const entry = prod? "./index.js" : [ 
+const entry = prod? "./index.js" : [
   "webpack-dev-server/client?" + devUrl,
   "webpack/hot/only-dev-server",
   "./index.js"
 ]
 const devtool = prod? null : "eval"
 const publicPath = prod? "/" : devUrl
-const plugins = prod? 
+const plugins = prod?
   [
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin("index.css")
-  ] 
-: 
+  ]
+:
   [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
@@ -41,9 +55,9 @@ const plugins = prod?
   ]
 
 const styleLoaders = "css-loader!postcss-loader!stylus-loader"
-const stylus = prod? 
+const stylus = prod?
   ExtractTextPlugin.extract("style-loader", styleLoaders)
-: 
+:
   "style-loader!" + styleLoaders
 
 
@@ -53,7 +67,7 @@ const builder = webpack({
   entry: entry,
   output: {
     path: "/",
-    publicPath: publicPath 
+    publicPath: publicPath
   },
   resolve: {
     fallback: [__dirname + "/src/components"],
@@ -61,21 +75,21 @@ const builder = webpack({
   },
   module: {
     loaders: [
-      { test: /\.json$/, 
-        exclude: /node_modules/, 
+      { test: /\.json$/,
+        exclude: /node_modules/,
         loader: "json"},
-      { test: /\.styl$/, 
-        exclude: /node_modules/, 
+      { test: /\.styl$/,
+        exclude: /node_modules/,
         loader: stylus},
-      { test: /\.js$/, 
-        exclude: /node_modules/, 
+      { test: /\.js$/,
+        exclude: /node_modules/,
         loaders: ["react-hot", "babel-loader"]},
-      { test: /\.jsx$/, 
-        exclude: /node_modules/, 
+      { test: /\.jsx$/,
+        exclude: /node_modules/,
         loaders: ["react-hot", "babel-loader"]},
-      { test: /\.woff(2)?([\?]?.*)?$/, 
+      { test: /\.woff(2)?([\?]?.*)?$/,
         loader: "url-loader?limit=10000&minetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)([\?]?.*)?$/, 
+      { test: /\.(ttf|eot|svg)([\?]?.*)?$/,
         loader: "file-loader" }
     ]
   },
@@ -101,7 +115,7 @@ if (dev) {
     if (err) {
       console.log(err)
     }
-    
+
     console.log("Webpack server is listening at " + devUrl)
   })
 }
