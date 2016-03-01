@@ -18,6 +18,7 @@
 
 # Converts XML import from JIRA to JSON format
 
+import os
 import json
 import sys
 import xmltodict
@@ -34,8 +35,12 @@ def main():
     print "Usage: jira_xml_to_json.py <export.xml>"
     return 0
 
+
+  input_file = sys.argv[1]
+  output_file = os.path.basename(input_file).replace("ASF-JIRA-", "asf-") \
+                                            .replace(".xml", ".json")
   ideasDict =  defaultdict(list)
-  with open(sys.argv[1], 'r') as xml, open('asf-gsoc2015.json', 'w') as ideas_json_out:
+  with open(input_file, 'r') as xml, open(output_file, 'w') as ideas_json_out:
     tree = etree.parse(xml)
     issues = tree.xpath('//item')
     for issue in issues:
@@ -52,9 +57,11 @@ def main():
                       i['description']
       )
       ideasDict["ideas"].append(p.__dict__)
-#    ideas_json_out.write(json.dumps(ideasDict))
+    ideas_json_out.write(json.dumps(ideasDict))
 
-  with open('asf-gsoc2015-labels.json', 'w') as labels_json:
+  output_file_lagels = os.path.basename(input_file).replace("ASF-JIRA-", "asf-") \
+                                                   .replace(".xml", "-labels.json")
+  with open(output_file_lagels, 'w') as labels_json:
     labelsDict = defaultdict(int)
     for idea in ideasDict["ideas"]:
       for label in idea["labels"]:

@@ -14,6 +14,8 @@ Visualize all Apache GSoC 2015 proposals from https://.apache.org/gsoc2015ideas
   ./jira_xml_to_json.py ASF-JIRA-gsoc-2015.xml
 
   #verify
-  cat asf-gsoc2015.json | jq ".ideas | length"
-  cat asf-gsoc2015.json | jq -c ".ideas[]" | wc -l
+  cat asf-gsoc2016.json | jq ".ideas | length"
+  cat asf-gsoc2016.json | jq -c ".ideas[]" | wc -l
+
+  cat asf-gsoc2016.json | jq -c ".ideas | sort_by(.project) | .[].project" | uniq | wc -l
 ```
